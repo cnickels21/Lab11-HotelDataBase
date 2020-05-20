@@ -15,12 +15,18 @@ namespace Lab12_HotelDataBase.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Hotel room key and property column type declared below
             modelBuilder.Entity<HotelRoom>()
                 .HasKey(hotelRoom => new
                 {
                     hotelRoom.HotelId,
                     hotelRoom.RoomId,
                 });
+            modelBuilder.Entity<HotelRoom>()
+                .Property(room => room.Rate)
+                .HasColumnType("decimal(18,4)");
+
+            // Room amenities key declared below
             modelBuilder.Entity<RoomAmenities>()
                 .HasKey(roomAmenities => new
                 {
