@@ -13,6 +13,10 @@ namespace Lab12_HotelDataBase.Data
         {
         }
 
+        /// <summary>
+        /// Model builder for composite key setup in the method below
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Hotel room key and property column type declared below
@@ -33,6 +37,15 @@ namespace Lab12_HotelDataBase.Data
                     roomAmenities.AmenitiesId,
                     roomAmenities.RoomId,
                 });
+
+            modelBuilder.Entity<Hotel>()
+                .HasData(
+                new { Id = 1, Name = "AsyncInn", City = "Seattle", },
+                new { Id = 2, Name = "SimUInn", City = "Madison", },
+                new { Id = 3, Name = "AnachrInn", City = "Cedar Rapids", },
+                new { Id = 4, Name = "InSyncInn", City = "Chicago",  },
+                new { Id = 5, Name = "HarlequInn", City = "New York", }
+                );
         }
 
         /// <summary>
@@ -41,7 +54,7 @@ namespace Lab12_HotelDataBase.Data
         public DbSet<Hotel> Hotels { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<HotelRoom> HotelRooms { get; set; }
-        public DbSet<Amenities> Amenities { get; set; }
         public DbSet<RoomAmenities> RoomAmenities { get; set; }
+        public DbSet<Amenities> Amenities { get; set; }
     }
 }
