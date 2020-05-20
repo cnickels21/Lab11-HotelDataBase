@@ -3,14 +3,16 @@ using Lab12_HotelDataBase.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Lab12_HotelDataBase.Migrations
 {
     [DbContext(typeof(HotelDBContext))]
-    partial class HotelDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200520221743_AddRoomAmenitiesTable")]
+    partial class AddRoomAmenitiesTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -118,8 +120,6 @@ namespace Lab12_HotelDataBase.Migrations
 
                     b.HasKey("AmenitiesId", "RoomId");
 
-                    b.HasIndex("RoomId");
-
                     b.ToTable("RoomAmenities");
                 });
 
@@ -128,21 +128,6 @@ namespace Lab12_HotelDataBase.Migrations
                     b.HasOne("Lab12_HotelDataBase.Models.Hotel", "Hotel")
                         .WithMany()
                         .HasForeignKey("HotelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Lab12_HotelDataBase.Models.Room", "Room")
-                        .WithMany()
-                        .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Lab12_HotelDataBase.Models.RoomAmenities", b =>
-                {
-                    b.HasOne("Lab12_HotelDataBase.Models.Hotel", "Amenities")
-                        .WithMany()
-                        .HasForeignKey("AmenitiesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

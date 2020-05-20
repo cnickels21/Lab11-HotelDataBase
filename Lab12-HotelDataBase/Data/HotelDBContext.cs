@@ -21,6 +21,12 @@ namespace Lab12_HotelDataBase.Data
                     hotelRoom.HotelId,
                     hotelRoom.RoomId,
                 });
+            modelBuilder.Entity<RoomAmenities>()
+                .HasKey(roomAmenities => new
+                {
+                    roomAmenities.AmenitiesId,
+                    roomAmenities.RoomId,
+                });
         }
 
         /// <summary>
@@ -29,5 +35,7 @@ namespace Lab12_HotelDataBase.Data
         public DbSet<Hotel> Hotels { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<HotelRoom> HotelRooms { get; set; }
+        public DbSet<Amenities> Amenities { get; set; }
+        public DbSet<RoomAmenities> RoomAmenities { get; set; }
     }
 }
