@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Lab12_HotelDataBase.Data
 {
-    public class HotelDbContext : DbContext
+    public class HotelDBContext : DbContext
     {
+        public HotelDBContext(DbContextOptions options) : base(options)
+        {
+        }
     }
 }
