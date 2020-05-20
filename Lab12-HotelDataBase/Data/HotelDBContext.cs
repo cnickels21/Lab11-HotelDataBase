@@ -16,6 +16,7 @@ namespace Lab12_HotelDataBase.Data
         /// <summary>
         /// DbSets are defined below; should be at least 3 in total
         /// </summary>
-        public DbSet<RoomAmenities> Hotels { get; set; }
+        public DbSet<Hotel> Hotels { get; set; }
+        public DbSet<Room> Room { get; set; }
     }
 }
