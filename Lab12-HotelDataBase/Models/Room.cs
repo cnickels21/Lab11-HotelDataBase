@@ -14,5 +14,13 @@ namespace Lab12_HotelDataBase.Models
 
         [Required]
         public string Layout { get; set; }
+
+        /// <summary>
+        /// Navigation properties to hotel room and room amenities
+        /// </summary>
+        [Required]
+        public HotelRoom HotelRoom { get; set; }
+        [Required]
+        public RoomAmenities RoomAmenities{ get; set; }
     }
 }
