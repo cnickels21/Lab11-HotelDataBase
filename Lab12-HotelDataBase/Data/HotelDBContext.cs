@@ -46,6 +46,25 @@ namespace Lab12_HotelDataBase.Data
                 new { Id = 4, Name = "InSyncInn", City = "Chicago",  },
                 new { Id = 5, Name = "HarlequInn", City = "New York", }
                 );
+
+            modelBuilder.Entity<Room>()
+                .HasData(
+                new { Id = 1, Name = "Low Baller", Layout = "Quick n Easy" },
+                new { Id = 2, Name = "Don't Ask, We Tell", Layout = "1 Queen" },
+                new { Id = 3, Name = "Super Sleeper", Layout = "7 Queens" },
+                new { Id = 4, Name = "King Suite", Layout = "The Works" },
+                new { Id = 5, Name = "Sleepy Cove", Layout = "Exotic retreat in a retreat" },
+                new { Id = 6, Name = "Penthouse", Layout = "Come back with more money to find out!" }
+                );
+
+            modelBuilder.Entity<Amenities>()
+                .HasData(
+                new { Id = 1, Name = "Coffee"},
+                new { Id = 2, Name = "Toilet" },
+                new { Id = 3, Name = "Window" },
+                new { Id = 4, Name = "Jacuzzi" },
+                new { Id = 5, Name = "Tiki Bar" }
+                );
         }
 
         /// <summary>

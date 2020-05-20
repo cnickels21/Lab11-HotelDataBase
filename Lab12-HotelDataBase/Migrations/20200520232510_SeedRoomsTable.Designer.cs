@@ -3,14 +3,16 @@ using Lab12_HotelDataBase.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Lab12_HotelDataBase.Migrations
 {
     [DbContext(typeof(HotelDBContext))]
-    partial class HotelDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200520232510_SeedRoomsTable")]
+    partial class SeedRoomsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,33 +34,6 @@ namespace Lab12_HotelDataBase.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Amenities");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Coffee"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Toilet"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Window"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Jacuzzi"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Tiki Bar"
-                        });
                 });
 
             modelBuilder.Entity("Lab12_HotelDataBase.Models.Hotel", b =>
