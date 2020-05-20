@@ -13,10 +13,21 @@ namespace Lab12_HotelDataBase.Data
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<HotelRoom>()
+                .HasKey(hotelRoom => new
+                {
+                    hotelRoom.HotelId,
+                    hotelRoom.RoomId,
+                });
+        }
+
         /// <summary>
         /// DbSets are defined below; should be at least 3 in total
         /// </summary>
         public DbSet<Hotel> Hotels { get; set; }
-        public DbSet<Room> Room { get; set; }
+        public DbSet<Room> Rooms { get; set; }
+        public DbSet<HotelRoom> HotelRooms { get; set; }
     }
 }
