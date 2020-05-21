@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Lab12_HotelDataBase.Migrations
 {
     [DbContext(typeof(HotelDBContext))]
-    [Migration("20200521000549_AmenitiesEnumProperty")]
-    partial class AmenitiesEnumProperty
+    [Migration("20200521020936_EnumPropertyOnAmenities")]
+    partial class EnumPropertyOnAmenities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,8 +27,10 @@ namespace Lab12_HotelDataBase.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Name")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.HasKey("Id");
 
@@ -38,27 +40,27 @@ namespace Lab12_HotelDataBase.Migrations
                         new
                         {
                             Id = 1,
-                            Name = 0
+                            Name = "Coffee"
                         },
                         new
                         {
                             Id = 2,
-                            Name = 1
+                            Name = "Toilet"
                         },
                         new
                         {
                             Id = 3,
-                            Name = 2
+                            Name = "Window"
                         },
                         new
                         {
                             Id = 4,
-                            Name = 3
+                            Name = "Jacuzzi"
                         },
                         new
                         {
                             Id = 5,
-                            Name = 4
+                            Name = "TikiBar"
                         });
                 });
 
