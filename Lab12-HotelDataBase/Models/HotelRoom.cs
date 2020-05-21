@@ -18,7 +18,7 @@ namespace Lab12_HotelDataBase.Models
         [Required]
         public int RoomId { get; set; }
 
-        [Column(TypeName = "decimal(18,4)")]
+        [Column(TypeName = "money")]
         public decimal Rate { get; set; }
 
         public bool PetFriendly { get; set; }
