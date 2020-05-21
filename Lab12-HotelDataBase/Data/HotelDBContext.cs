@@ -59,8 +59,8 @@ namespace Lab12_HotelDataBase.Data
 
             modelBuilder.Entity<Amenities>()
                 .HasData(
-                new { Id = 1, Name = "Coffee"},
-                new { Id = 2, Name = "Toilet" },
+                new { Id = 1, Name = AmenityType.Coffee},
+                new { Id = 2, AmenityType = Amenities.Toilet },
                 new { Id = 3, Name = "Window" },
                 new { Id = 4, Name = "Jacuzzi" },
                 new { Id = 5, Name = "Tiki Bar" }

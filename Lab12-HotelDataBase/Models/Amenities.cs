@@ -11,6 +11,15 @@ namespace Lab12_HotelDataBase.Models
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public Name Name { get; set; }
+
+        public enum Name
+        {
+            Coffee,
+            Toilet,
+            Window,
+            Jacuzzi,
+            TikiBar,
+        }
     }
 }
