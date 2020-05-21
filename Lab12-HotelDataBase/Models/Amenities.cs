@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.SqlServer;
+
 
 namespace Lab12_HotelDataBase.Models
 {
@@ -12,14 +14,17 @@ namespace Lab12_HotelDataBase.Models
 
         [Required]
         public Name Name { get; set; }
+    }
 
-        public enum Name
-        {
-            Coffee,
-            Toilet,
-            Window,
-            Jacuzzi,
-            TikiBar,
-        }
+    /// <summary>
+    /// Amenity enum constructor
+    /// </summary>
+    public enum Name
+    {
+        Coffee,
+        Toilet,
+        Window,
+        Jacuzzi,
+        TikiBar,
     }
 }

@@ -3,14 +3,16 @@ using Lab12_HotelDataBase.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Lab12_HotelDataBase.Migrations
 {
     [DbContext(typeof(HotelDBContext))]
-    partial class HotelDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200521000549_AmenitiesEnumProperty")]
+    partial class AmenitiesEnumProperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,10 +27,8 @@ namespace Lab12_HotelDataBase.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                    b.Property<int>("Name")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -38,27 +38,27 @@ namespace Lab12_HotelDataBase.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Coffee"
+                            Name = 0
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Toilet"
+                            Name = 1
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Window"
+                            Name = 2
                         },
                         new
                         {
                             Id = 4,
-                            Name = "Jacuzzi"
+                            Name = 3
                         },
                         new
                         {
                             Id = 5,
-                            Name = "TikiBar"
+                            Name = 4
                         });
                 });
 

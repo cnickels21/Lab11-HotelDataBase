@@ -1,5 +1,7 @@
 ﻿using Lab12_HotelDataBase.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore.SqlServer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,13 +59,23 @@ namespace Lab12_HotelDataBase.Data
                 new { Id = 6, Name = "Penthouse", Layout = "Come back with more money to find out!" }
                 );
 
+            modelBuilder.Entity<Amenities>(amenities =>
+            {
+                amenities.Property(property => property.Name)
+                    .HasMaxLength(50);
+                amenities.Property(property => property.Name)
+                    .HasConversion<string>();
+            });
+
+
             modelBuilder.Entity<Amenities>()
+
                 .HasData(
-                new { Id = 1, Name = AmenityType.Coffee},
-                new { Id = 2, AmenityType = Amenities.Toilet },
-                new { Id = 3, Name = "Window" },
-                new { Id = 4, Name = "Jacuzzi" },
-                new { Id = 5, Name = "Tiki Bar" }
+                new { Id = 1, Name = Name.Coffee },
+                new { Id = 2, Name = Name.Toilet },
+                new { Id = 3, Name = Name.Window },
+                new { Id = 4, Name = Name.Jacuzzi },
+                new { Id = 5, Name = Name.TikiBar }
                 );
         }
 
