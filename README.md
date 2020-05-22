@@ -4,6 +4,10 @@
 
 Entity relationships database model.  A basic web application in .NET, written in C# that models what a simple database structure and entity relationships would look like in code.  The app is to simulate what a hotel string's database would look like to manage a few different hotels around the country with their rooms that are available, types of rooms, and amenities that are offered for each room.  Below you will see an entity relationship diagram to model what is happening behind the scenes, and a short description of each table and its relationships in the database.
 
+## API
+
+There are route handlers for all five of the database tables, each of which includes get, post, put, and delete methods.  These are used to display, update, create, and delete items from each individual table.  Their functionality is still very base right now, but they will be built out over the next few days.  I have been using postman to verify usability and functionality for each type of route method for each table controller.
+
 ![Async Inn ERD](assets/AsyncInnERD.png)
 
 ## Relations In Detail
