@@ -28,8 +28,7 @@ namespace Lab12_HotelDataBase.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Hotel>> GetHotel(int id)
         {
-            // var hotel = await _context.Hotels.FindAsync(id);
-            var hotel = await hotelRepository.GetOneHotel(id);
+            Hotel hotel = await hotelRepository.GetOneHotel(id);
 
             if (hotel == null)
             {
@@ -85,9 +84,5 @@ namespace Lab12_HotelDataBase.Controllers
             return hotel;
         }
 
-        private bool HotelExists(int id)
-        {
-            return hotelRepository.HotelExists(id);
-        }
     }
 }

@@ -50,9 +50,9 @@ namespace Lab12_HotelDataBase.Controllers
                 return BadRequest();
             }
 
-            await roomRepository.UpdateRoom(id, room);
+            bool roomUpdated = await roomRepository.UpdateRoom(id, room);
 
-            if (!RoomExists(id))
+            if (!roomUpdated)
             {
                 return NotFound();
             }
@@ -84,9 +84,5 @@ namespace Lab12_HotelDataBase.Controllers
             return room;
         }
 
-        private bool RoomExists(int id)
-        {
-            return _context.Rooms.Any(e => e.Id == id);
-        }
     }
 }
