@@ -10,7 +10,7 @@ namespace Lab12_HotelDataBase.Controllers
     [ApiController]
     public class HotelsController : ControllerBase
     {
-        readonly IHotelRepository hotelRepository;
+        IHotelRepository hotelRepository;
 
         public HotelsController(IHotelRepository hotelRepository)
         {

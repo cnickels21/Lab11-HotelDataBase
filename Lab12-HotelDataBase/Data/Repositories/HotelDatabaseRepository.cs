@@ -25,6 +25,13 @@ namespace Lab12_HotelDataBase.Data.Repositories
             return await _context.Hotels.FindAsync(id);
         }
 
+        public async Task<Hotel> SaveNewHotel(Hotel hotel)
+        {
+            _context.Hotels.Add(hotel);
+            await _context.SaveChangesAsync();
+            return hotel;
+        }
+
         public async Task<Hotel> DeleteHotel(int id)
         {
             var hotel = await _context.Hotels.FindAsync(id);
@@ -36,13 +43,6 @@ namespace Lab12_HotelDataBase.Data.Repositories
             _context.Hotels.Remove(hotel);
             await _context.SaveChangesAsync();
 
-            return hotel;
-        }
-
-        public async Task<Hotel> SaveNewHotel(Hotel hotel)
-        {
-            _context.Hotels.Add(hotel);
-            await _context.SaveChangesAsync();
             return hotel;
         }
 
