@@ -22,6 +22,7 @@ namespace Lab12_HotelDataBase.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Hotel room key and property column type declared below
+            
             modelBuilder.Entity<HotelRoom>()
                 .HasKey(hotelRoom => new
                 {
@@ -49,14 +50,22 @@ namespace Lab12_HotelDataBase.Data
                 new { Id = 5, Name = "HarlequInn", City = "New York", }
                 );
 
+            modelBuilder.Entity<Room>(layouts =>
+            {
+                layouts.Property(property => property.Layout)
+                    .HasMaxLength(500);
+                layouts.Property(property => property.Layout)
+                    .HasConversion<string>();
+            });
+
             modelBuilder.Entity<Room>()
                 .HasData(
-                new { Id = 1, Name = "Low Baller", Layout = "Quick n Easy" },
-                new { Id = 2, Name = "Don't Ask, We Tell", Layout = "1 Queen" },
-                new { Id = 3, Name = "Super Sleeper", Layout = "7 Queens" },
-                new { Id = 4, Name = "King Suite", Layout = "The Works" },
-                new { Id = 5, Name = "Sleepy Cove", Layout = "Exotic retreat in a retreat" },
-                new { Id = 6, Name = "Penthouse", Layout = "Come back with more money to find out!" }
+                new { Id = 1, Name = "Low Baller", Layout = Layout.QuickNEasy },
+                new { Id = 2, Name = "Don't Ask, We Tell", Layout = Layout.OneQueen },
+                new { Id = 3, Name = "Super Sleeper", Layout = Layout.SevenQueens },
+                new { Id = 4, Name = "King Suite", Layout = Layout.TheWorks },
+                new { Id = 5, Name = "Sleepy Cove", Layout = Layout.ExoticRetreat },
+                new { Id = 6, Name = "Penthouse", Layout = Layout.YouNeedMoreMoney }
                 );
 
             modelBuilder.Entity<Amenities>(amenities =>

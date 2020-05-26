@@ -10,6 +10,10 @@
     <Compile Remove="Migrations\20200521000549_AmenitiesEnumProperty.Designer.cs" />
     <Compile Remove="Migrations\20200521002356_AmenitiesEnumPropertyCorrectly.cs" />
     <Compile Remove="Migrations\20200521002356_AmenitiesEnumPropertyCorrectly.Designer.cs" />
+    <Compile Remove="Migrations\20200526203411_RoomEnumProperty.cs" />
+    <Compile Remove="Migrations\20200526203411_RoomEnumProperty.Designer.cs" />
+    <Compile Remove="Migrations\20200526204319_ResetEnumProperty.cs" />
+    <Compile Remove="Migrations\20200526204319_ResetEnumProperty.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
