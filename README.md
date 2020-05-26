@@ -8,6 +8,10 @@ Entity relationships database model.  A basic web application in .NET, written i
 
 There are route handlers for all five of the database tables, each of which includes get, post, put, and delete methods.  These are used to display, update, create, and delete items from each individual table.  Their functionality is still very base right now, but they will be built out over the next few days.  I have been using postman to verify usability and functionality for each type of route method for each table controller.
 
+## Interfaces
+
+There are three custom interfaces that I created for dependency injection.  There is an API and a correlating database service handler for the hotels, rooms, and amenities tables, that are operating and handling the database behind the scenes.  Mean while, the controllers themselves are now strictly and only in charge of handling taking the request and returning the response.  Everything else that is happening on the backend is not directly controlled by the controllers.
+
 ![Async Inn ERD](assets/AsyncInnERD.png)
 
 ## Relations In Detail
