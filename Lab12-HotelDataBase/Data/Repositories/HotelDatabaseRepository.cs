@@ -1,7 +1,5 @@
 ﻿using Lab12_HotelDataBase.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,7 +36,7 @@ namespace Lab12_HotelDataBase.Data.Repositories
             _context.Hotels.Remove(hotel);
             await _context.SaveChangesAsync();
 
-            return hotel; 
+            return hotel;
         }
 
         public async Task<Hotel> SaveNewHotel(Hotel hotel)

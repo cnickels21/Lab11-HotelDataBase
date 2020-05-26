@@ -1,8 +1,6 @@
-﻿using Lab12_HotelDataBase.Data;
-using Lab12_HotelDataBase.Data.Repositories;
+﻿using Lab12_HotelDataBase.Data.Repositories;
 using Lab12_HotelDataBase.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,13 +18,6 @@ namespace Lab12_HotelDataBase.Controllers
             this.roomRepository = roomRepository;
         }
 
-        private readonly HotelDBContext _context;
-
-        public RoomsController(HotelDBContext context)
-        {
-            _context = context;
-        }
-
         // GET: api/Rooms
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Room>>> GetRooms()
@@ -38,7 +29,7 @@ namespace Lab12_HotelDataBase.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Room>> GetRoom(int id)
         {
-            var room = await _context.Rooms.FindAsync(id);
+            Room room = await roomRepository.GetOneRoom(id);
 
             if (room == null)
             {
@@ -59,24 +50,12 @@ namespace Lab12_HotelDataBase.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(room).State = EntityState.Modified;
+            await roomRepository.UpdateRoom(id, room);
 
-            try
+            if (!RoomExists(id))
             {
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RoomExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
             return NoContent();
         }
 
@@ -86,8 +65,7 @@ namespace Lab12_HotelDataBase.Controllers
         [HttpPost]
         public async Task<ActionResult<Room>> PostRoom(Room room)
         {
-            _context.Rooms.Add(room);
-            await _context.SaveChangesAsync();
+            await roomRepository.SaveNewRoom(room);
 
             return CreatedAtAction("GetRoom", new { id = room.Id }, room);
         }
@@ -96,14 +74,12 @@ namespace Lab12_HotelDataBase.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Room>> DeleteRoom(int id)
         {
-            var room = await _context.Rooms.FindAsync(id);
+            var room = await roomRepository.DeleteRoom(id);
+
             if (room == null)
             {
                 return NotFound();
             }
-
-            _context.Rooms.Remove(room);
-            await _context.SaveChangesAsync();
 
             return room;
         }

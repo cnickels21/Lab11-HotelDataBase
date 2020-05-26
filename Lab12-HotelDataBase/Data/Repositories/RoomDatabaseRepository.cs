@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Lab12_HotelDataBase.Data.Repositories
@@ -21,24 +20,52 @@ namespace Lab12_HotelDataBase.Data.Repositories
             return await _context.Rooms.ToListAsync();
         }
 
-        public Task<Room> GetOneRoom(int id)
+        public async Task<Room> GetOneRoom(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Rooms.FindAsync(id);
         }
 
-        public Task<Room> SaveNewRoom(Room room)
+        public async Task<Room> SaveNewRoom(Room room)
         {
-            throw new NotImplementedException();
+            _context.Rooms.Add(room);
+            await _context.SaveChangesAsync();
+            return room;
         }
 
-        public Task<Room> DeleteRoom(int id)
+        public async Task<Room> DeleteRoom(int id)
         {
-            throw new NotImplementedException();
+            var room = await _context.Rooms.FindAsync(id);
+            if (room == null)
+            {
+                return null;
+            }
+
+            _context.Rooms.Remove(room);
+            await _context.SaveChangesAsync();
+
+            return room;
         }
 
-        public Task<bool> UpdateRoom(int id, Room room)
+        public async Task<bool> UpdateRoom(int id, Room room)
         {
-            throw new NotImplementedException();
+            _context.Entry(room).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!RoomExists(id))
+                {
+                    return false;
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
 
         public bool RoomExists(int id)
