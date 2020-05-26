@@ -10,7 +10,7 @@ namespace Lab12_HotelDataBase.Controllers
     [ApiController]
     public class HotelsController : ControllerBase
     {
-        IHotelRepository hotelRepository;
+        readonly IHotelRepository hotelRepository;
 
         public HotelsController(IHotelRepository hotelRepository)
         {
@@ -21,7 +21,7 @@ namespace Lab12_HotelDataBase.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Hotel>>> GetHotels()
         {
-            return await hotelRepository.GetAllHotels();
+            return Ok(await hotelRepository.GetAllHotels());
         }
 
         // GET: api/Hotels/5

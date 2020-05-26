@@ -17,17 +17,17 @@ namespace Lab12_HotelDataBase.Data.Repositories
             _context = context;
         }
 
-        public async Task<ActionResult<IEnumerable<Hotel>>> GetAllHotels()
+        public async Task<IEnumerable<Hotel>> GetAllHotels()
         {
             return await _context.Hotels.ToListAsync();
         }
 
-        public async Task<ActionResult<Hotel>> GetOneHotel(int id)
+        public async Task<Hotel> GetOneHotel(int id)
         {
             return await _context.Hotels.FindAsync(id);
         }
 
-        public async Task<ActionResult<Hotel>> DeleteHotel(int id)
+        public async Task<Hotel> DeleteHotel(int id)
         {
             var hotel = await _context.Hotels.FindAsync(id);
             if (hotel == null)
@@ -41,7 +41,7 @@ namespace Lab12_HotelDataBase.Data.Repositories
             return hotel; 
         }
 
-        public async Task<ActionResult<Hotel>> SaveNewHotel(Hotel hotel)
+        public async Task<Hotel> SaveNewHotel(Hotel hotel)
         {
             _context.Hotels.Add(hotel);
             await _context.SaveChangesAsync();
