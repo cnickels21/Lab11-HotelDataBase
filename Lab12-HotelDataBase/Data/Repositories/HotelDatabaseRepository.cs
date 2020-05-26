@@ -17,34 +17,62 @@ namespace Lab12_HotelDataBase.Data.Repositories
             _context = context;
         }
 
-        public async Task<ActionResult<IEnumerable<Hotel>>> GetHotels()
+        public async Task<ActionResult<IEnumerable<Hotel>>> GetAllHotels()
         {
             return await _context.Hotels.ToListAsync();
         }
 
-        public Task<ActionResult<Hotel>> GetHotel(int id)
+        public async Task<ActionResult<Hotel>> GetOneHotel(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Hotels.FindAsync(id);
         }
 
-        public Task<ActionResult<Hotel>> DeleteHotel(int id)
+        public async Task<ActionResult<Hotel>> DeleteHotel(int id)
         {
-            throw new NotImplementedException();
+            var hotel = await _context.Hotels.FindAsync(id);
+            if (hotel == null)
+            {
+                return null;
+            }
+
+            _context.Hotels.Remove(hotel);
+            await _context.SaveChangesAsync();
+
+            return hotel; 
         }
 
-        public Task<bool> HotelExists(int id)
+        public async Task<ActionResult<Hotel>> SaveNewHotel(Hotel hotel)
         {
-            throw new NotImplementedException();
+            _context.Hotels.Add(hotel);
+            await _context.SaveChangesAsync();
+            return hotel;
         }
 
-        public Task<ActionResult<Hotel>> PostHotel(Hotel hotel)
+        public async Task<bool> UpdateHotel(int id, Hotel hotel)
         {
-            throw new NotImplementedException();
+            _context.Entry(hotel).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!HotelExists(id))
+                {
+                    return false;
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
 
-        public Task<IActionResult> PutHotel(int id, Hotel hotel)
+        public bool HotelExists(int id)
         {
-            throw new NotImplementedException();
+            return _context.Hotels.Any(e => e.Id == id);
         }
     }
 }
