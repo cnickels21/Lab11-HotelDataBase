@@ -23,11 +23,5 @@ namespace Lab12_HotelDataBase.Models
         public string Country { get; set; }
 
         public string Phone { get; set; }
-
-        /// <summary>
-        /// Navigation property
-        /// </summary>
-        [Required]
-        public HotelRoom HotelRoom { get; set; }
     }
 }
