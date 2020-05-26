@@ -1,4 +1,5 @@
 ﻿using Lab12_HotelDataBase.Data;
+using Lab12_HotelDataBase.Data.Repositories;
 using Lab12_HotelDataBase.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,13 @@ namespace Lab12_HotelDataBase.Controllers
     [ApiController]
     public class RoomsController : ControllerBase
     {
+        IRoomRepository roomRepository;
+
+        public RoomsController(IRoomRepository roomRepository)
+        {
+            this.roomRepository = roomRepository;
+        }
+
         private readonly HotelDBContext _context;
 
         public RoomsController(HotelDBContext context)
@@ -23,7 +31,7 @@ namespace Lab12_HotelDataBase.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Room>>> GetRooms()
         {
-            return await _context.Rooms.ToListAsync();
+            return Ok(await roomRepository.GetAllRooms());
         }
 
         // GET: api/Rooms/5

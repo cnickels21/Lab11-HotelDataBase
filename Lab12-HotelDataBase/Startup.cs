@@ -25,6 +25,7 @@ namespace Lab12_HotelDataBase
             services.AddMvc();
 
             services.AddTransient<IHotelRepository, HotelDatabaseRepository>();
+            services.AddTransient<IRoomRepository, RoomDatabaseRepository>();
 
             services.AddDbContext<HotelDBContext>(options =>
             {
