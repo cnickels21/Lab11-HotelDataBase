@@ -1,4 +1,5 @@
 using Lab12_HotelDataBase.Data;
+using Lab12_HotelDataBase.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,8 @@ namespace Lab12_HotelDataBase
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddTransient<IHotelRepository, HotelDatabaseRepository>();
 
             services.AddDbContext<HotelDBContext>(options =>
             {

@@ -87,7 +87,6 @@ namespace Lab12_HotelDataBase.Controllers
 
         private bool HotelExists(int id)
         {
-            // return _context.Hotels.Any(e => e.Id == id);
             return hotelRepository.HotelExists(id);
         }
     }
