@@ -68,22 +68,13 @@ namespace Lab12_HotelDataBase.Data
                 new { Id = 6, Name = "Penthouse", Layout = Layout.YouNeedMoreMoney }
                 );
 
-            modelBuilder.Entity<Amenities>(amenities =>
-            {
-                amenities.Property(property => property.Name)
-                    .HasMaxLength(50);
-                amenities.Property(property => property.Name)
-                    .HasConversion<string>();
-            });
-
-
             modelBuilder.Entity<Amenities>()
                 .HasData(
-                new { Id = 1, Name = Name.Coffee },
-                new { Id = 2, Name = Name.Toilet },
-                new { Id = 3, Name = Name.Window },
-                new { Id = 4, Name = Name.Jacuzzi },
-                new { Id = 5, Name = Name.TikiBar }
+                new { Id = 1, Name = "Coffee" },
+                new { Id = 2, Name = "Toilet" },
+                new { Id = 3, Name = "Window" },
+                new { Id = 4, Name = "Jacuzzi" },
+                new { Id = 5, Name = "Tiki Bar" }
                 );
         }
 

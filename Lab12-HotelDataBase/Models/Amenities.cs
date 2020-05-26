@@ -13,18 +13,6 @@ namespace Lab12_HotelDataBase.Models
         public int Id { get; set; }
 
         [Required]
-        public Name Name { get; set; }
-    }
-
-    /// <summary>
-    /// Amenity enum constructor
-    /// </summary>
-    public enum Name
-    {
-        Coffee,
-        Toilet,
-        Window,
-        Jacuzzi,
-        TikiBar,
+        public string Name { get; set; }
     }
 }
