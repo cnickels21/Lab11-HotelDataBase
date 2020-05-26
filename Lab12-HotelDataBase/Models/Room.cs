@@ -14,6 +14,18 @@ namespace Lab12_HotelDataBase.Models
         public string Name { get; set; }
 
         [Required]
-        public string Layout { get; set; }
+        public Layout Layout { get; set; }
+
+
+    }
+
+    public enum Layout
+    {
+        QuickNEasy,
+        OneQueen,
+        SevenQueens,
+        TheWorks,
+        ExoticRetreat,
+        YouNeedMoreMoney,
     }
 }
