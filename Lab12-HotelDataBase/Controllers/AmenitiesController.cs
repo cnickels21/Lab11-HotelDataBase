@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Lab12_HotelDataBase.Data;
+using Lab12_HotelDataBase.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Lab12_HotelDataBase.Data;
-using Lab12_HotelDataBase.Models;
 
 namespace Lab12_HotelDataBase.Controllers
 {

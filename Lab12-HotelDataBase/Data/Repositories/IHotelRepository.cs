@@ -1,8 +1,6 @@
 ﻿using Lab12_HotelDataBase.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Lab12_HotelDataBase.Data.Repositories
@@ -13,7 +11,7 @@ namespace Lab12_HotelDataBase.Data.Repositories
 
         Task<ActionResult<Hotel>> GetHotel(int id);
 
-        Task<IActionResult> PutHotel(int id, Hotel hotel);
+        Task<IActionResult> UpdateHotel(int id, Hotel hotel);
 
         Task<ActionResult<Hotel>> PostHotel(Hotel hotel);
 

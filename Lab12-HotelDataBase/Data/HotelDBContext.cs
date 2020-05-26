@@ -1,11 +1,5 @@
 ﻿using Lab12_HotelDataBase.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.EntityFrameworkCore.SqlServer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Lab12_HotelDataBase.Data
 {
@@ -22,7 +16,7 @@ namespace Lab12_HotelDataBase.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Hotel room key and property column type declared below
-            
+
             modelBuilder.Entity<HotelRoom>()
                 .HasKey(hotelRoom => new
                 {
@@ -46,7 +40,7 @@ namespace Lab12_HotelDataBase.Data
                 new { Id = 1, Name = "AsyncInn", City = "Seattle", },
                 new { Id = 2, Name = "SimUInn", City = "Madison", },
                 new { Id = 3, Name = "AnachrInn", City = "Cedar Rapids", },
-                new { Id = 4, Name = "InSyncInn", City = "Chicago",  },
+                new { Id = 4, Name = "InSyncInn", City = "Chicago", },
                 new { Id = 5, Name = "HarlequInn", City = "New York", }
                 );
 
