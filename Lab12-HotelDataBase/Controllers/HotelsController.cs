@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Lab12_HotelDataBase.Data;
+﻿using Lab12_HotelDataBase.Data.Repositories;
 using Lab12_HotelDataBase.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Lab12_HotelDataBase.Controllers
 {
@@ -14,25 +10,25 @@ namespace Lab12_HotelDataBase.Controllers
     [ApiController]
     public class HotelsController : ControllerBase
     {
-        private readonly HotelDBContext _context;
+        IHotelRepository hotelRepository;
 
-        public HotelsController(HotelDBContext context)
+        public HotelsController(IHotelRepository hotelRepository)
         {
-            _context = context;
+            this.hotelRepository = hotelRepository;
         }
 
         // GET: api/Hotels
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Hotel>>> GetHotels()
         {
-            return await _context.Hotels.ToListAsync();
+            return Ok(await hotelRepository.GetAllHotels());
         }
 
         // GET: api/Hotels/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Hotel>> GetHotel(int id)
         {
-            var hotel = await _context.Hotels.FindAsync(id);
+            Hotel hotel = await hotelRepository.GetOneHotel(id);
 
             if (hotel == null)
             {
@@ -53,22 +49,11 @@ namespace Lab12_HotelDataBase.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(hotel).State = EntityState.Modified;
+            bool hotelUpdated = await hotelRepository.UpdateHotel(id, hotel);
 
-            try
+            if (!hotelUpdated)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!HotelExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return NotFound();
             }
 
             return NoContent();
@@ -80,8 +65,7 @@ namespace Lab12_HotelDataBase.Controllers
         [HttpPost]
         public async Task<ActionResult<Hotel>> PostHotel(Hotel hotel)
         {
-            _context.Hotels.Add(hotel);
-            await _context.SaveChangesAsync();
+            await hotelRepository.SaveNewHotel(hotel);
 
             return CreatedAtAction("GetHotel", new { id = hotel.Id }, hotel);
         }
@@ -90,21 +74,15 @@ namespace Lab12_HotelDataBase.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Hotel>> DeleteHotel(int id)
         {
-            var hotel = await _context.Hotels.FindAsync(id);
+            var hotel = await hotelRepository.DeleteHotel(id);
+
             if (hotel == null)
             {
                 return NotFound();
             }
 
-            _context.Hotels.Remove(hotel);
-            await _context.SaveChangesAsync();
-
             return hotel;
         }
 
-        private bool HotelExists(int id)
-        {
-            return _context.Hotels.Any(e => e.Id == id);
-        }
     }
 }
