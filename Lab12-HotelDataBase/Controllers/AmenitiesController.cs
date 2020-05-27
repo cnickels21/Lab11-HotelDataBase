@@ -68,7 +68,7 @@ namespace Lab12_HotelDataBase.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Amenities>> PostAmenities(Amenities amenities)
+        public async Task<ActionResult<AmenitiesDTO>> PostAmenities(Amenities amenities)
         {
             await amenitiesRepository.SaveNewAmenity(amenities);
 

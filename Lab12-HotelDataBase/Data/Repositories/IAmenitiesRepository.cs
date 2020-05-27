@@ -15,7 +15,7 @@ namespace Lab12_HotelDataBase.Data.Repositories
 
         Task<bool> UpdateAmenity(int id, Amenities amenities);
 
-        Task<Amenities> SaveNewAmenity(Amenities amenities);
+        Task<AmenitiesDTO> SaveNewAmenity(Amenities amenities);
 
         Task<Amenities> DeleteAmenity(int id);
 

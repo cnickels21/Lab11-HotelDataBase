@@ -43,11 +43,11 @@ namespace Lab12_HotelDataBase.Data.Repositories
             return amenity;
         }
 
-        public async Task<Amenities> SaveNewAmenity(Amenities amenities)
+        public async Task<AmenitiesDTO> SaveNewAmenity(Amenities amenities)
         {
             _context.Amenities.Add(amenities);
             await _context.SaveChangesAsync();
-            return amenities;
+            return await GetOneAmenity(amenities.Id);
         }
 
         public async Task<Amenities> DeleteAmenity(int id)
