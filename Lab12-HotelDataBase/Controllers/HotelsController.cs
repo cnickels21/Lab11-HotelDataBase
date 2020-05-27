@@ -29,7 +29,6 @@ namespace Lab12_HotelDataBase.Controllers
         public async Task<ActionResult<Hotel>> GetHotel(int id)
         {
             Hotel hotel = await hotelRepository.GetOneHotel(id);
-            hotel.Id = id;
 
             if (hotel == null)
             {
@@ -45,6 +44,8 @@ namespace Lab12_HotelDataBase.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutHotel(int id, Hotel hotel)
         {
+            hotel.Id = id;
+
             if (id != hotel.Id)
             {
                 return BadRequest();
