@@ -7,7 +7,7 @@ namespace Lab12_HotelDataBase.Models.Api
 {
     public class AmenitiesDTO
     {
-        // public int Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace Lab12_HotelDataBase.Data.Repositories
     {
         Task<IEnumerable<AmenitiesDTO>> GetAllAmenities();
 
-        Task<Amenities> GetOneAmenity(int id);
+        Task<AmenitiesDTO> GetOneAmenity(int id);
 
         Task<bool> UpdateAmenity(int id, Amenities amenities);
 

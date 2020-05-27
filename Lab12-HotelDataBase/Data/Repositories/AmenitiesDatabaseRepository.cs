@@ -22,7 +22,7 @@ namespace Lab12_HotelDataBase.Data.Repositories
             var amenities = await _context.Amenities
                 .Select(amenity => new AmenitiesDTO
                 {
-                    // Id = amenity.Id,
+                    Id = amenity.Id,
                     Name = amenity.Name,
                 })
                 .ToListAsync();
@@ -30,9 +30,16 @@ namespace Lab12_HotelDataBase.Data.Repositories
             return amenities;
         }
 
-        public async Task<Amenities> GetOneAmenity(int id)
+        public async Task<AmenitiesDTO> GetOneAmenity(int id)
         {
-            return await _context.Amenities.FindAsync(id);
+            var amenity =  await _context.Amenities
+                .Select(amenity => new AmenitiesDTO
+                {
+                    Name = amenity.Name,
+                })
+                .FirstOrDefaultAsync(amenity => amenity.Id == id);
+
+            return amenity;
         }
 
         public async Task<Amenities> SaveNewAmenity(Amenities amenities)
