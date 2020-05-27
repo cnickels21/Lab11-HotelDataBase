@@ -29,6 +29,7 @@ namespace Lab12_HotelDataBase.Controllers
         public async Task<ActionResult<Hotel>> GetHotel(int id)
         {
             Hotel hotel = await hotelRepository.GetOneHotel(id);
+            hotel.Id = id;
 
             if (hotel == null)
             {
