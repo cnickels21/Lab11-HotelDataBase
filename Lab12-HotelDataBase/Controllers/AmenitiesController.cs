@@ -1,6 +1,7 @@
 ﻿using Lab12_HotelDataBase.Data;
 using Lab12_HotelDataBase.Data.Repositories;
 using Lab12_HotelDataBase.Models;
+using Lab12_HotelDataBase.Models.Api;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace Lab12_HotelDataBase.Controllers
 
         // GET: api/Amenities
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Amenities>>> GetAmenities()
+        public async Task<ActionResult<IEnumerable<AmenitiesDTO>>> GetAmenities()
         {
             return Ok(await amenitiesRepository.GetAllAmenities());
         }
