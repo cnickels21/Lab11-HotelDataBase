@@ -45,6 +45,8 @@ namespace Lab12_HotelDataBase.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRoom(int id, Room room)
         {
+            room.Id = id;
+
             if (id != room.Id)
             {
                 return BadRequest();
