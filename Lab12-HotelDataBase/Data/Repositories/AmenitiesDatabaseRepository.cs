@@ -32,9 +32,10 @@ namespace Lab12_HotelDataBase.Data.Repositories
 
         public async Task<AmenitiesDTO> GetOneAmenity(int id)
         {
-            var amenity =  await _context.Amenities
+            var amenity = await _context.Amenities
                 .Select(amenity => new AmenitiesDTO
                 {
+                    Id = amenity.Id,
                     Name = amenity.Name,
                 })
                 .FirstOrDefaultAsync(amenity => amenity.Id == id);

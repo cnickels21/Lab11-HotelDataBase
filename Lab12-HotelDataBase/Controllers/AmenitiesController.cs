@@ -32,14 +32,14 @@ namespace Lab12_HotelDataBase.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<AmenitiesDTO>> GetAmenities(int id)
         {
-            AmenitiesDTO amenities = await amenitiesRepository.GetOneAmenity(id);
+            AmenitiesDTO amenity = await amenitiesRepository.GetOneAmenity(id);
 
-            if (amenities == null)
+            if (amenity == null)
             {
                 return NotFound();
             }
 
-            return amenities;
+            return amenity;
         }
 
         // PUT: api/Amenities/5
