@@ -1,4 +1,5 @@
 ﻿using Lab12_HotelDataBase.Models;
+using Lab12_HotelDataBase.Models.Api;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace Lab12_HotelDataBase.Data.Repositories
 {
     public interface IAmenitiesRepository
     {
-        Task<IEnumerable<Amenities>> GetAllAmenities();
+        Task<IEnumerable<AmenitiesDTO>> GetAllAmenities();
 
         Task<Amenities> GetOneAmenity(int id);
 

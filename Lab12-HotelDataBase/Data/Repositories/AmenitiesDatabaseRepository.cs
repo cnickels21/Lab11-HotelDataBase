@@ -1,4 +1,5 @@
 ﻿using Lab12_HotelDataBase.Models;
+using Lab12_HotelDataBase.Models.Api;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,17 @@ namespace Lab12_HotelDataBase.Data.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Amenities>> GetAllAmenities()
+        public async Task<IEnumerable<AmenitiesDTO>> GetAllAmenities()
         {
-            return await _context.Amenities.ToListAsync();
+            var amenities = await _context.Amenities
+                .Select(amenity => new AmenitiesDTO
+                {
+                    // Id = amenity.Id,
+                    Name = amenity.Name,
+                })
+                .ToListAsync();
+
+            return amenities;
         }
 
         public async Task<Amenities> GetOneAmenity(int id)
