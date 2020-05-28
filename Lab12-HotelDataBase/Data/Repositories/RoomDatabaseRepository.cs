@@ -16,24 +16,24 @@ namespace Lab12_HotelDataBase.Data.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Room>> GetAllRooms()
+        public async Task<IEnumerable<RoomGTO>> GetAllRooms()
         {
             return await _context.Rooms.ToListAsync();
         }
 
-        public async Task<Room> GetOneRoom(int id)
+        public async Task<RoomGTO> GetOneRoom(int id)
         {
             return await _context.Rooms.FindAsync(id);
         }
 
-        public async Task<Room> SaveNewRoom(Room room)
+        public async Task<RoomGTO> SaveNewRoom(RoomGTO room)
         {
             _context.Rooms.Add(room);
             await _context.SaveChangesAsync();
             return room;
         }
 
-        public async Task<Room> DeleteRoom(int id)
+        public async Task<RoomGTO> DeleteRoom(int id)
         {
             var room = await _context.Rooms.FindAsync(id);
             if (room == null)
@@ -47,7 +47,7 @@ namespace Lab12_HotelDataBase.Data.Repositories
             return room;
         }
 
-        public async Task<bool> UpdateRoom(int id, Room room)
+        public async Task<bool> UpdateRoom(int id, RoomGTO room)
         {
             _context.Entry(room).State = EntityState.Modified;
 

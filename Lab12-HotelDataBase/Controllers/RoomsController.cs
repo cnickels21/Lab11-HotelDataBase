@@ -1,5 +1,6 @@
 ﻿using Lab12_HotelDataBase.Data.Repositories;
 using Lab12_HotelDataBase.Models;
+using Lab12_HotelDataBase.Models.Api;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,16 +21,16 @@ namespace Lab12_HotelDataBase.Controllers
 
         // GET: api/Rooms
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Room>>> GetRooms()
+        public async Task<ActionResult<IEnumerable<RoomDTO>>> GetRooms()
         {
             return Ok(await roomRepository.GetAllRooms());
         }
 
         // GET: api/Rooms/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Room>> GetRoom(int id)
+        public async Task<ActionResult<RoomGTO>> GetRoom(int id)
         {
-            Room room = await roomRepository.GetOneRoom(id);
+            RoomGTO room = await roomRepository.GetOneRoom(id);
 
             if (room == null)
             {
@@ -43,7 +44,7 @@ namespace Lab12_HotelDataBase.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRoom(int id, Room room)
+        public async Task<IActionResult> PutRoom(int id, RoomGTO room)
         {
             room.Id = id;
 
@@ -65,7 +66,7 @@ namespace Lab12_HotelDataBase.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Room>> PostRoom(Room room)
+        public async Task<ActionResult<RoomGTO>> PostRoom(RoomGTO room)
         {
             await roomRepository.SaveNewRoom(room);
 
@@ -74,7 +75,7 @@ namespace Lab12_HotelDataBase.Controllers
 
         // DELETE: api/Rooms/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Room>> DeleteRoom(int id)
+        public async Task<ActionResult<RoomGTO>> DeleteRoom(int id)
         {
             var room = await roomRepository.DeleteRoom(id);
 

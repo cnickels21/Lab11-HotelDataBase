@@ -6,15 +6,15 @@ namespace Lab12_HotelDataBase.Data.Repositories
 {
     public interface IRoomRepository
     {
-        Task<IEnumerable<Room>> GetAllRooms();
+        Task<IEnumerable<RoomGTO>> GetAllRooms();
 
-        Task<Room> GetOneRoom(int id);
+        Task<RoomGTO> GetOneRoom(int id);
 
-        Task<bool> UpdateRoom(int id, Room room);
+        Task<bool> UpdateRoom(int id, RoomGTO room);
 
-        Task<Room> SaveNewRoom(Room room);
+        Task<RoomGTO> SaveNewRoom(RoomGTO room);
 
-        Task<Room> DeleteRoom(int id);
+        Task<RoomGTO> DeleteRoom(int id);
 
         bool RoomExists(int id);
     }

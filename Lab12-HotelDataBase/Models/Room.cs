@@ -2,7 +2,7 @@
 
 namespace Lab12_HotelDataBase.Models
 {
-    public class Room
+    public class RoomGTO
     {
         public int Id { get; set; }
 
