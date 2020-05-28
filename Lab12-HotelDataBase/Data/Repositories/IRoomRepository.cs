@@ -1,4 +1,5 @@
 ﻿using Lab12_HotelDataBase.Models;
+using Lab12_HotelDataBase.Models.Api;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,15 +7,15 @@ namespace Lab12_HotelDataBase.Data.Repositories
 {
     public interface IRoomRepository
     {
-        Task<IEnumerable<RoomGTO>> GetAllRooms();
+        Task<IEnumerable<RoomDTO>> GetAllRooms();
 
-        Task<RoomGTO> GetOneRoom(int id);
+        Task<Room> GetOneRoom(int id);
 
-        Task<bool> UpdateRoom(int id, RoomGTO room);
+        Task<bool> UpdateRoom(int id, Room room);
 
-        Task<RoomGTO> SaveNewRoom(RoomGTO room);
+        Task<Room> SaveNewRoom(Room room);
 
-        Task<RoomGTO> DeleteRoom(int id);
+        Task<Room> DeleteRoom(int id);
 
         bool RoomExists(int id);
     }

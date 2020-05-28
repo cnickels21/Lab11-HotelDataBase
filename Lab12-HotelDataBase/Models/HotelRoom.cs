@@ -25,6 +25,6 @@ namespace Lab12_HotelDataBase.Models
         [Required]
         public Hotel Hotel { get; set; }
         [Required]
-        public RoomGTO Room { get; set; }
+        public Room Room { get; set; }
     }
 }

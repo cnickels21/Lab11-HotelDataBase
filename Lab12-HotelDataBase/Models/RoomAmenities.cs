@@ -14,7 +14,7 @@ namespace Lab12_HotelDataBase.Models
         /// References to hotels and rooms table below
         /// </summary>
         [Required]
-        public RoomGTO Room { get; set; }
+        public Room Room { get; set; }
         [Required]
         public Hotel Amenities { get; set; }
 

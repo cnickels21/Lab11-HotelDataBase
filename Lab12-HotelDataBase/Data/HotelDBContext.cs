@@ -44,7 +44,7 @@ namespace Lab12_HotelDataBase.Data
                 new { Id = 5, Name = "HarlequInn", City = "New York", }
                 );
 
-            modelBuilder.Entity<RoomGTO>(layouts =>
+            modelBuilder.Entity<Room>(layouts =>
             {
                 layouts.Property(property => property.Layout)
                     .HasMaxLength(500);
@@ -52,7 +52,7 @@ namespace Lab12_HotelDataBase.Data
                     .HasConversion<string>();
             });
 
-            modelBuilder.Entity<RoomGTO>()
+            modelBuilder.Entity<Room>()
                 .HasData(
                 new { Id = 1, Name = "Low Baller", Layout = Layout.QuickNEasy },
                 new { Id = 2, Name = "Don't Ask, We Tell", Layout = Layout.OneQueen },
@@ -76,7 +76,7 @@ namespace Lab12_HotelDataBase.Data
         /// DbSets are defined below; should be at least 3 in total
         /// </summary>
         public DbSet<Hotel> Hotels { get; set; }
-        public DbSet<RoomGTO> Rooms { get; set; }
+        public DbSet<Room> Rooms { get; set; }
         public DbSet<HotelRoom> HotelRooms { get; set; }
         public DbSet<RoomAmenities> RoomAmenities { get; set; }
         public DbSet<Amenities> Amenities { get; set; }

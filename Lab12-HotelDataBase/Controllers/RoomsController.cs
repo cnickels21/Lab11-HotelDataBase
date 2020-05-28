@@ -28,9 +28,9 @@ namespace Lab12_HotelDataBase.Controllers
 
         // GET: api/Rooms/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<RoomGTO>> GetRoom(int id)
+        public async Task<ActionResult<Room>> GetRoom(int id)
         {
-            RoomGTO room = await roomRepository.GetOneRoom(id);
+            Room room = await roomRepository.GetOneRoom(id);
 
             if (room == null)
             {
@@ -44,7 +44,7 @@ namespace Lab12_HotelDataBase.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRoom(int id, RoomGTO room)
+        public async Task<IActionResult> PutRoom(int id, Room room)
         {
             room.Id = id;
 
@@ -66,7 +66,7 @@ namespace Lab12_HotelDataBase.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<RoomGTO>> PostRoom(RoomGTO room)
+        public async Task<ActionResult<Room>> PostRoom(Room room)
         {
             await roomRepository.SaveNewRoom(room);
 
@@ -75,7 +75,7 @@ namespace Lab12_HotelDataBase.Controllers
 
         // DELETE: api/Rooms/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<RoomGTO>> DeleteRoom(int id)
+        public async Task<ActionResult<Room>> DeleteRoom(int id)
         {
             var room = await roomRepository.DeleteRoom(id);
 
