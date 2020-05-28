@@ -29,8 +29,8 @@ namespace Lab12_HotelDataBase.Data.Repositories
                     Amenities = room.Amenities
                         .Select(amenity => new AmenitiesDTO
                         {
-                            Id = amenity.Id,
-                            Name = amenity.Name,
+                            Id = amenity.Amenities.Id,
+                            Name = amenity.Amenities.Name,
                         })
                         .ToList()
                 })
@@ -51,8 +51,8 @@ namespace Lab12_HotelDataBase.Data.Repositories
                     Amenities = room.Amenities
                         .Select(amenity => new AmenitiesDTO
                         {
-                            Id = amenity.Id,
-                            Name = amenity.Name,
+                            Id = amenity.Amenities.Id,
+                            Name = amenity.Amenities.Name,
                         })
                         .ToList()
                 })

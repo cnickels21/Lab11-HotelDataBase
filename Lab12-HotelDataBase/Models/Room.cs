@@ -13,7 +13,7 @@ namespace Lab12_HotelDataBase.Models
         [Required]
         public Layout Layout { get; set; }
 
-        public ICollection<Amenities> Amenities { get; set; }
+        public ICollection<RoomAmenities> Amenities { get; set; }
 
 
     }
