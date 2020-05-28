@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Lab12_HotelDataBase.Models
 {
@@ -11,6 +12,8 @@ namespace Lab12_HotelDataBase.Models
 
         [Required]
         public Layout Layout { get; set; }
+
+        public ICollection<Amenities> Amenities { get; set; }
 
 
     }

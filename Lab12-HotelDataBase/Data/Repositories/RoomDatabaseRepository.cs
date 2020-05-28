@@ -19,7 +19,25 @@ namespace Lab12_HotelDataBase.Data.Repositories
 
         public async Task<IEnumerable<RoomDTO>> GetAllRooms()
         {
-            return await _context.Rooms.ToListAsync();
+            var rooms = await _context.Rooms
+                .Select(room => new RoomDTO
+                {
+                    Id = room.Id,
+                    Name = room.Name,
+                    Layout = room.Layout.ToString(),
+
+                    Amenities = room.Amenities
+                        .Select(amenity => new AmenitiesDTO
+                        {
+                            Id = amenity.Id,
+                            Name = amenity.Name,
+                        })
+                        .ToList()
+                })
+                .ToListAsync();
+
+
+            return rooms;
         }
 
         public async Task<Room> GetOneRoom(int id)
