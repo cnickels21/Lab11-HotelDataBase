@@ -28,9 +28,9 @@ namespace Lab12_HotelDataBase.Controllers
 
         // GET: api/Rooms/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Room>> GetRoom(int id)
+        public async Task<ActionResult<RoomDTO>> GetRoom(int id)
         {
-            Room room = await roomRepository.GetOneRoom(id);
+            RoomDTO room = await roomRepository.GetOneRoom(id);
 
             if (room == null)
             {

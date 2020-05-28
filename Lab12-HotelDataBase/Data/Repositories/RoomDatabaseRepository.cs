@@ -36,13 +36,29 @@ namespace Lab12_HotelDataBase.Data.Repositories
                 })
                 .ToListAsync();
 
-
             return rooms;
         }
 
-        public async Task<Room> GetOneRoom(int id)
+        public async Task<RoomDTO> GetOneRoom(int id)
         {
-            return await _context.Rooms.FindAsync(id);
+            var room = await _context.Rooms
+                .Select(room => new RoomDTO
+                {
+                    Id = room.Id,
+                    Name = room.Name,
+                    Layout = room.Layout.ToString(),
+
+                    Amenities = room.Amenities
+                        .Select(amenity => new AmenitiesDTO
+                        {
+                            Id = amenity.Id,
+                            Name = amenity.Name,
+                        })
+                        .ToList()
+                })
+                .FirstOrDefaultAsync(room => room.Id == id);
+
+            return room;
         }
 
         public async Task<Room> SaveNewRoom(Room room)

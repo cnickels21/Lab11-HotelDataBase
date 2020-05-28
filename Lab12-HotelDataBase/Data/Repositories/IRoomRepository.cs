@@ -9,7 +9,7 @@ namespace Lab12_HotelDataBase.Data.Repositories
     {
         Task<IEnumerable<RoomDTO>> GetAllRooms();
 
-        Task<Room> GetOneRoom(int id);
+        Task<RoomDTO> GetOneRoom(int id);
 
         Task<bool> UpdateRoom(int id, Room room);
 
