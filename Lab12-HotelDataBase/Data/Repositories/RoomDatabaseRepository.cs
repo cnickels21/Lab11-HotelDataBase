@@ -1,4 +1,5 @@
 ﻿using Lab12_HotelDataBase.Models;
+using Lab12_HotelDataBase.Models.Api;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,14 +17,48 @@ namespace Lab12_HotelDataBase.Data.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Room>> GetAllRooms()
+        public async Task<IEnumerable<RoomDTO>> GetAllRooms()
         {
-            return await _context.Rooms.ToListAsync();
+            var rooms = await _context.Rooms
+                .Select(room => new RoomDTO
+                {
+                    Id = room.Id,
+                    Name = room.Name,
+                    Layout = room.Layout.ToString(),
+
+                    Amenities = room.Amenities
+                        .Select(amenity => new AmenitiesDTO
+                        {
+                            Id = amenity.Amenities.Id,
+                            Name = amenity.Amenities.Name,
+                        })
+                        .ToList()
+                })
+                .ToListAsync();
+
+            return rooms;
         }
 
-        public async Task<Room> GetOneRoom(int id)
+        public async Task<RoomDTO> GetOneRoom(int id)
         {
-            return await _context.Rooms.FindAsync(id);
+            var room = await _context.Rooms
+                .Select(room => new RoomDTO
+                {
+                    Id = room.Id,
+                    Name = room.Name,
+                    Layout = room.Layout.ToString(),
+
+                    Amenities = room.Amenities
+                        .Select(amenity => new AmenitiesDTO
+                        {
+                            Id = amenity.Amenities.Id,
+                            Name = amenity.Amenities.Name,
+                        })
+                        .ToList()
+                })
+                .FirstOrDefaultAsync(room => room.Id == id);
+
+            return room;
         }
 
         public async Task<Room> SaveNewRoom(Room room)

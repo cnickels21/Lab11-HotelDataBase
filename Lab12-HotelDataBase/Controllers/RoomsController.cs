@@ -1,5 +1,6 @@
 ﻿using Lab12_HotelDataBase.Data.Repositories;
 using Lab12_HotelDataBase.Models;
+using Lab12_HotelDataBase.Models.Api;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,16 +21,16 @@ namespace Lab12_HotelDataBase.Controllers
 
         // GET: api/Rooms
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Room>>> GetRooms()
+        public async Task<ActionResult<IEnumerable<RoomDTO>>> GetRooms()
         {
             return Ok(await roomRepository.GetAllRooms());
         }
 
         // GET: api/Rooms/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Room>> GetRoom(int id)
+        public async Task<ActionResult<RoomDTO>> GetRoom(int id)
         {
-            Room room = await roomRepository.GetOneRoom(id);
+            RoomDTO room = await roomRepository.GetOneRoom(id);
 
             if (room == null)
             {

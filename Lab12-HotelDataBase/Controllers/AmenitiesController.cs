@@ -1,6 +1,7 @@
 ﻿using Lab12_HotelDataBase.Data;
 using Lab12_HotelDataBase.Data.Repositories;
 using Lab12_HotelDataBase.Models;
+using Lab12_HotelDataBase.Models.Api;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -22,23 +23,23 @@ namespace Lab12_HotelDataBase.Controllers
 
         // GET: api/Amenities
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Amenities>>> GetAmenities()
+        public async Task<ActionResult<IEnumerable<AmenitiesDTO>>> GetAmenities()
         {
             return Ok(await amenitiesRepository.GetAllAmenities());
         }
 
         // GET: api/Amenities/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Amenities>> GetAmenities(int id)
+        public async Task<ActionResult<AmenitiesDTO>> GetAmenities(int id)
         {
-            Amenities amenities = await amenitiesRepository.GetOneAmenity(id);
+            AmenitiesDTO amenity = await amenitiesRepository.GetOneAmenity(id);
 
-            if (amenities == null)
+            if (amenity == null)
             {
                 return NotFound();
             }
 
-            return amenities;
+            return amenity;
         }
 
         // PUT: api/Amenities/5
@@ -67,7 +68,7 @@ namespace Lab12_HotelDataBase.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Amenities>> PostAmenities(Amenities amenities)
+        public async Task<ActionResult<AmenitiesDTO>> PostAmenities(Amenities amenities)
         {
             await amenitiesRepository.SaveNewAmenity(amenities);
 
