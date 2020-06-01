@@ -19,8 +19,12 @@ namespace Lab12_HotelDataBase.Web.Services
 
         public async Task<List<Room>> GetRooms()
         {
-            var responseStream = await client.GetStreamAsync("Rooms");
-            List<Room> result = await JsonSerializer.DeserializeAsync<List<Room>>(responseStream);
+            var responseStream = await client
+                .GetStreamAsync("Rooms");
+
+            List<Room> result = await JsonSerializer
+                .DeserializeAsync<List<Room>>(responseStream);
+
             return result;
         }
     }
