@@ -1,5 +1,9 @@
 # Lab11-HotelDataBase
 
+## Web App and Database on Azure
+ - [Azure Web App](https://lab12-hoteldatabaseweb.azurewebsites.net)
+ - [Azure Database](https://lab12-hoteldatabase.azurewebsites.net)
+
 ## Summary
 
 Entity relationships database model.  A basic web application in .NET, written in C# that models what a simple database structure and entity relationships would look like in code.  The app is to simulate what a hotel string's database would look like to manage a few different hotels around the country with their rooms that are available, types of rooms, and amenities that are offered for each room.  Below you will see an entity relationship diagram to model what is happening behind the scenes, and a short description of each table and its relationships in the database.
