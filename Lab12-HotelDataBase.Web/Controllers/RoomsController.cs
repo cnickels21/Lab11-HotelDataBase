@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Lab12_HotelDataBase.Web.Models;
 using System.Threading.Tasks;
+using Lab12_HotelDataBase.Web.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +11,18 @@ namespace Lab12_HotelDataBase.Web.Controllers
 {
     public class RoomsController : Controller
     {
-        // GET: Rooms
-        public ActionResult Index()
+        IRoomService roomService;
+
+        public RoomsController(IRoomService roomService)
         {
-            return View();
+            this.roomService = roomService;
+        }
+
+        // GET: Rooms
+        public async Task<ActionResult> Index()
+        {
+            var rooms = await roomService.GetRooms();
+            return View(rooms);
         }
 
         // GET: Rooms/Details/5

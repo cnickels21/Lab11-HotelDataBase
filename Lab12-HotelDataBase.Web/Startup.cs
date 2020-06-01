@@ -1,7 +1,9 @@
  using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
+using Lab12_HotelDataBase.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +26,15 @@ namespace Lab12_HotelDataBase.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            var httpClient = new HttpClient
+            {
+                BaseAddress = new Uri(Configuration.GetValue<string>("API_URL")),
+            };
+
+            services.AddSingleton<HttpClient>(httpClient);
+
+            services.AddSingleton<IRoomService, WebRoomService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
