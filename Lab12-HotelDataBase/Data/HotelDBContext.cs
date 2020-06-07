@@ -21,11 +21,11 @@ namespace Lab12_HotelDataBase.Data
                 .HasKey(hotelRoom => new
                 {
                     hotelRoom.HotelId,
-                    hotelRoom.RoomId,
+                    hotelRoom.RoomNumber,
                 });
             modelBuilder.Entity<HotelRoom>()
                 .Property(room => room.Rate)
-                .HasColumnType("decimal(18,4)");
+                .HasColumnType("decimal(18,2)");
 
             // Room amenities key declared below
             modelBuilder.Entity<RoomAmenities>()
