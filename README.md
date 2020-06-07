@@ -1,3 +1,5 @@
+![.NET Core](https://github.com/cnickels21/Lab12-HotelDataBase/workflows/.NET%20Core/badge.svg?branch=master)
+
 # Lab11-HotelDataBase
 
 ## Summary
